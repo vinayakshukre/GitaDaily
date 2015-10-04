@@ -1,0 +1,11 @@
+Hare Krishna !!!
+
+Dandwat Pranam to all devotees.
+
+This project is mobile application version of the website gitadaily.com. This website is run by Shri Chaitanya Charan Das Prabhu. He daily writes 300 words long explanation on one verse of BhagvadGita. 
+
+Vinayak Shukre is regular reader of this website and is trying to assist Chaitanya Charan Das Prabhu's team in developing this mobile application.
+Toshan Nimai Das ( Tushar Mundada ) is contributing the requirements.
+
+We are looking for more developers who have skills of web UI technologies ( HTML/HTML5, CSS/CSS3, Javascript, bootstrap.js etc.)
+
