@@ -26,6 +26,6 @@ Steps followed :
 		
 	It asked me my username and password for github.com
 
-10.	Did further changes into HareKrishna.txt file and again fired command "git add HareKrishna.txt" followed by "git commit..."
+10.	Did further changes into HareKrishna.txt file and again fired command "git add HareKrishna.txt" followed by "git commit..." and "git push"
 11.	
 	
