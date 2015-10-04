@@ -1,3 +1,10 @@
 Hare Krishna Hare Krishna Krishna Krishna Hare Hare
 Hare Rama Hare Rama Rama Rama Hare Hare
 
+
+
+Steps followed :
+
+1.	Created new repository on Github with name as "GitaDaily"
+2.	Created directory GitaDaily on local machine and addred HareKrishna.txt into it
+3.	
