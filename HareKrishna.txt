@@ -6,5 +6,26 @@ Hare Rama Hare Rama Rama Rama Hare Hare
 Steps followed :
 
 1.	Created new repository on Github with name as "GitaDaily"
-2.	Created directory GitaDaily on local machine and addred HareKrishna.txt into it
-3.	
+2.	Fired command "git init"
+3.	Created directory GitaDaily on local machine and addred HareKrishna.txt into it
+3.	Started Git Bash and selected location as /f to select f: f drive on my laptop
+4.	Fired command cd /f/code/GitaDaily
+5.	Fired command "git add HareKrishna.txt"
+6.	Fired command 
+			git commit -m "first commit"
+	This required me to set my identity which was done using below command.
+			git config --global user.email "vinayakshukre@gmail.com"
+	
+7.	Fired command
+			git commit -m "first commit"
+8.	Fired command
+			git remote add origin https://github.com/vinayakshukre/GitaDaily.git
+
+9.	Fired command
+			git push -u origin master
+		
+	It asked me my username and password for github.com
+
+10.	Did further changes into HareKrishna.txt file and again fired command "git add HareKrishna.txt" followed by "git commit..."
+11.	
+	
