@@ -16,6 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+var aboutThisAppText = "<p><b>Empower yourself with daily nuggets of wisdom from the Bhagavad-gita written by Chaitanya Charan das.</b>This is mobile application version of website www.GitaDaily.com which is world's only website that daily delivers a new 300 word long inspirational reflection on a verse from Bhagavad-Gita.</p><p><b>About Author:</b>Chaitanya Charan Das is a celibate spiritual teacher (brahmachari) at ISKCON Pune. He has done his Electronics & Telecommunications Engineering from the Govt College of Engg, Pune. He subsequently served as a software engineer in a multinational software company, Patni Computer Systems.<p><p><b> To know more, please visit:</b><ul><li>www.GitaDaily.com</li><li>www.thespiritualscientist.com</li><li>www.iskcon.org</li></ul></p>"
+var postDisplayHTML = "<div id=\"titleDiv\" class=\"titleClass\"></div><div id=\"authorDiv\">-By Chaitanya Charan Das</div><div id=\"mainDiv\" class=\"completeArea\"><div class=\"centerAlignment\"><br><img src=\"img/KrishnaArjun3.jpg\" class=\"KrishnaArjunImg\"><br><img src=\"img/wait2.gif\"></div></div>";
 var app = {
     // Application Constructor
     initialize: function() {
@@ -31,7 +33,7 @@ var app = {
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
+    // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
     },
@@ -47,3 +49,176 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+var postArray = [];
+var firstTimeToShowPrevPostList = true;
+var showPrevPosts = function(){
+    //alert("Test");
+
+    $("#homepage").toggle("slide",{direction: 'left'},400,function(){
+        //alert("slide complete");
+        $("#homepage").empty();
+        $("#prevPosts").hide();
+        var postsList = $("#homepage").append("<ul class=\"postlist\"></ul>");
+        allItems.each(function(index,element){
+            var el = $(this);
+            if(firstTimeToShowPrevPostList){
+                 postArray.push(el);   
+            }
+            if(index == 0 && firstTimeToShowPrevPostList){    
+                return;
+            }
+            
+            postsList.append("<li id=\"li_" + index +"\" class=\"post\">" + getPostLink(el)  + "</li>");
+            //postArray.push(el);
+            //alert(el.find("title").text());
+        });
+        $("#homepage").toggle("fade");
+        $("#homepage").addClass("postListDiv");
+        $("li").on("click",showFullPost);
+        firstTimeToShowPrevPostList = false;
+    });
+    //alert(allItems);//.each()
+};
+var getPostLink = function(el){
+    var post = "<span class=\"mydate\">" + getDate(el) + "</span><span class=\"mycategory\">Based on " + getCategory(el) + "</span><br><h3>" + getTitle(el) + "</h3>" + getDesciption(el);
+    return post; ;
+};
+var getDate = function(el){
+    var d = new Date(el.find("pubDate").text());
+    return d.toDateString();
+};
+var getDesciption = function(el){
+    return el.find("description").text();;
+};
+var getTitle = function(el){
+    return el.find("title").text();
+};
+var getCategory = function(el){
+    return el.find("category").text();
+};
+var removeIFrameIfAny = function(contentStr){
+    //alert(contentStr);
+    var parser = new DOMParser();
+    //alert(parser);
+    contentStr = removeNonXMLChars(contentStr);
+  //  alert(contentStr);
+    var mydom = parser.parseFromString("<div>"+contentStr+"</div>", "text/xml");
+   // alert(mydom);
+    var allIFrames = mydom.getElementsByTagName("iframe");
+    for(var i=0; i< allIFrames.length; i++){
+        allIFrames[i].parentNode.removeChild(allIFrames[i]);
+    }
+    
+    correctAllImgWidths(mydom);
+
+    var oSerializer = new XMLSerializer();
+    var sXML = oSerializer.serializeToString(mydom);
+    //alert(sXML);
+    return replaceUnnecessaryStrings(sXML);
+};
+var displayPost = function(item,firstTime){
+    $("#prevPosts").show();
+    $("#authorDiv").show();
+    if(firstTime){
+        displayActualPost(item);
+    }else{
+        $("#homepage").toggle("slide",{direction: 'left'},400,function(){
+            displayActualPost(item);
+            $("#homepage").toggle("fade");
+        });
+    }
+    
+};
+var displayActualPost = function(item){
+    $("#homepage").empty();
+    $("#homepage").removeClass("postListDiv");
+    $("#homepage").html(postDisplayHTML);
+    $("#titleDiv").html(item.find("title").text());
+    $("#mainDiv").html(removeIFrameIfAny(item.find("encoded").text()));    
+    $("a").on("click",disableAllLinks);
+};
+var showFullPost = function(event){
+    var index = event.target.id.substr(3); // Strip off li_
+    displayPost(postArray[index],false);
+    
+};
+var removeNonXMLChars = function(contentStr){
+    contentStr = contentStr.split("&ldquo;").join("\"");
+    contentStr = contentStr.split("&rdquo;").join("\"");
+    //alert(contentStr);
+    contentStr = contentStr.split("&rsquo;").join("'");
+    //alert(contentStr);
+    contentStr = contentStr.split("&lsquo;").join("'");
+    contentStr = contentStr.split("&ndash;").join("-");
+    contentStr = contentStr.split("&nbsp;").join(" ");
+
+    //contentStr = contentStr.replace("","");
+    //alert(contentStr);
+    return contentStr;
+};
+var removeNonXMLChars2 = function(contentStr){
+    contentStr = contentStr.replace("&ldquo;","\"");
+    contentStr = contentStr.replace("&rdquo;","\"");
+    contentStr = contentStr.replace("&rsquo;","'");
+    alert(contentStr);
+    contentStr = contentStr.replace("&lsquo;","'");
+    contentStr = contentStr.replace("&ndash;","-");
+
+    //contentStr = contentStr.replace("","");
+    return contentStr;
+};
+var showAboutApp = function(){
+    $( "#dialog" ).dialog( "open" );
+};
+var init = function(){
+    $("#homepage").html(postDisplayHTML);
+    $("#authorDiv").hide();
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 500
+      },
+      hide: {
+        effect: "blind",
+        duration: 500
+      },
+      width:400,
+      height:600,
+      buttons: {
+                Close: function() {
+                  $( this ).dialog( "close" );
+                }
+              }
+    });
+};
+var disableAllLinks = function(){
+    return false;
+};
+var processPostsList = function(data){
+    allItems = $(data).find("item");
+    var firstItem = allItems.first();
+    displayPost(firstItem,true);
+};
+var putDataInLocalStorage = function(data){
+    //  
+};
+var getDataFromLocalStorage = function(data){
+
+};
+var isInternetConnectionAvailable = function(){
+    //alert(navigator.onLine);
+    return true;
+};
+var correctAllImgWidths = function(mydom){
+    var allImgs = mydom.getElementsByTagName("img");
+    for(var i=0; i< allImgs.length; i++){        
+        allImgs[i].setAttribute("style","width:100%;");        
+    }   
+};
+var replaceUnnecessaryStrings =  function(sXML){
+    sXML = sXML.replace("Explanation of article:","");
+    sXML = sXML.replace("Listen audio","");
+    return sXML;
+};
+

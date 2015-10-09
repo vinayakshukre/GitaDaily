@@ -62,7 +62,16 @@ Steps followed :
 
 16.	Build and app and download the apk file.
 
-17.	
+17.	Another way to compile the app and immediately test the changes is given below
+	
+		a.	Executed F:\code2\GitaDaily>cordova platform add android
+			This added android directory under earlier empty platforms directory.
+			
+		b.	Executed F:\code2\GitaDaily>phonegap run android 			to launch android emulator.
+			
+			Make changes into the code and fire the same command to re-launch the application in emulator.
+		
+18.	
 
 
 
