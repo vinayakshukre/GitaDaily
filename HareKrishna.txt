@@ -28,6 +28,40 @@ Steps followed :
 
 10.	Did further changes into HareKrishna.txt file and again fired command "git add HareKrishna.txt" followed by "git commit..." and "git push"
 11.	Created empty phonegap project with name as GitaDaily. Following command was used.
-			phonegap create path/to/my-app "com.example.app" "My App"
+			phonegap create . "com.gitadaily" "GitaDaily"
+			(This was manually copied into checked out GitaDaily git directory. Phonegap does not allow to create project in non-empty directory so this trick was used.)
+
+12.	Below command was used to generate keystore
+			F:\code2\distributionUsingCloud>keytool -genkey -v -keystore GitaDaily.keystore
+			-alias GitaDaily -keyalg RSA -keysize 2048 -validity 10000
+			Enter keystore password:
+			Re-enter new password:
+			What is your first and last name?
+			  [Unknown]:  Vinayak Shukre
+			What is the name of your organizational unit?
+			  [Unknown]:  Iskcon Pune
+			What is the name of your organization?
+			  [Unknown]:  Iskcon
+			What is the name of your City or Locality?
+			  [Unknown]:  Pune NVCC
+			What is the name of your State or Province?
+			  [Unknown]:  Maharashtra
+			What is the two-letter country code for this unit?
+			  [Unknown]:  IN
+			Is CN=Vinayak Shukre, OU=Iskcon Pune, O=Iskcon, L=Pune NVCC, ST=Maharashtra, C=I
+			N correct?
+			  [no]:  yes
+
+		Password was emailed to Toshan Nimai Das Prabhu
+
+13.	Go to https://build.phonegap.com/apps and login with Adobe username/password.
+
+14.	Specify url of github location and build the app.
+
+15.			
+
+
+
+
 		
 	
