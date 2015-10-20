@@ -70,7 +70,7 @@ var showPrevPosts = function(){
                 return;
             }
             
-            postsList.append("<li id=\"li_" + index +"\" class=\"post\">" + getPostLink(el)  + "</li>");
+            postsList.append("<li id=\"li_" + index +"\" class=\"post\">" + getPostLink(el,index)  + "</li>");
             //postArray.push(el);
             //alert(el.find("title").text());
         });
@@ -81,8 +81,8 @@ var showPrevPosts = function(){
     });
     //alert(allItems);//.each()
 };
-var getPostLink = function(el){
-    var post = "<span class=\"mydate\">" + getDate(el) + "</span><span class=\"mycategory\">Based on " + getCategory(el) + "</span><br><h3>" + getTitle(el) + "</h3>" + getDesciption(el);
+var getPostLink = function(el,index){
+    var post = "<span id=\"dt_" + index +"\" class=\"mydate\">" + getDate(el) + "</span><span id=\"ct_" + index +"\" class=\"mycategory\">Based on " + getCategory(el) + "</span><br><h3 id=\"h3_" + index +"\">" + getTitle(el) + "</h3>" + getDesciption(el);
     return post; ;
 };
 var getDate = function(el){
@@ -120,7 +120,7 @@ var removeIFrameIfAny = function(contentStr){
     return replaceUnnecessaryStrings(sXML);
 };
 var displayPost = function(item,firstTime){
-    alert(item);
+   // alert(item);
     $("#prevPosts").show();
     $("#authorDiv").show();
     if(firstTime){
@@ -143,15 +143,19 @@ var displayActualPost = function(item){
 };
 var showFullPost = function(event){
     var elementId = event.target.id 
-    alert(event.target.id);
+    /*alert(event.target.id);
     if(elementId.substr(0,3) != "li_"){  // This condition comes when user taps on span used to show date or category.
         alert("Tapped on either date or category");
         var parent = $(event.target).parent(); // Jump to corressponding li.
-        elementId = parent.id;
+        alert(parent);
+        elementId = parent.get("id");
+        alert(elementId + " after recalculation");    
         if(elementId.substr(0,3) != "li_")
             return;
-    }
-    alert(elementId + " after recalculation");
+    }*/
+    //alert(elementId + " final");
+    if(elementId == "")
+        return; // do nothing
     var index = elementId.substr(3); // Strip off li_
     displayPost(postArray[index],false);
     
@@ -174,7 +178,7 @@ var removeNonXMLChars2 = function(contentStr){
     contentStr = contentStr.replace("&ldquo;","\"");
     contentStr = contentStr.replace("&rdquo;","\"");
     contentStr = contentStr.replace("&rsquo;","'");
-    alert(contentStr);
+    //alert(contentStr);
     contentStr = contentStr.replace("&lsquo;","'");
     contentStr = contentStr.replace("&ndash;","-");
 
