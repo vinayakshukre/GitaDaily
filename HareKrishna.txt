@@ -71,7 +71,7 @@ Steps followed :
 			
 			Make changes into the code and fire the same command to re-launch the application in emulator.
 		
-18.	
+18.	F:\code2\GitaDaily\www\res\icon\android contains the app launcher icons.
 
 
 

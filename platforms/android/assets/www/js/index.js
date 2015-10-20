@@ -153,7 +153,7 @@ var showFullPost = function(event){
         if(elementId.substr(0,3) != "li_")
             return;
     }*/
-    alert(elementId + " final");
+    //alert(elementId + " final");
     if(elementId == "")
         return; // do nothing
     var index = elementId.substr(3); // Strip off li_
