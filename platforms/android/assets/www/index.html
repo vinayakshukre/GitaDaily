@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.structure.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.theme.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/krishna.css" />
+
+		<script type="text/javascript" src="js/lib/jquery-211.js"></script>
+		<script type="text/javascript" src="js/lib/jquery-ui-1.10.4.custom.min.js"></script>
+		
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+
+        <title>Hare Krishna</title>
+    </head>
+    <body onload="onLoad()">
+		<!--iframe height="100%" width="100%" src="http://www.gitadaily.com/2014/07/08">
+		</iframe-->
+		<div id="topBar" class="topBar">
+			Gita Daily
+            <img src="css/img/info3.gif" id="aboutAppLauncher" class="infoImg" />
+		</div>
+		<div id="homepage" class="middleArea">
+			
+			
+		</div>
+		<div id="bottomBar" class="bottomBar">
+				<div id="prevPosts" class="showPrevPostBtn">Show Previous Posts</div>
+		</div>
+		<!--div id="prevPostsPage">
+			<ul id="posts">
+
+			</ul>
+		</div -->
+        <div id="dialog" title="About this app"><p>Enrich yourself daily with wisdom from the Bhagavad-gita through brief reflections written by <b>Chaitanya Charan das</b>.This is mobile application version of website <b>www.GitaDaily.com</b> which is world's only website that delivers daily a new reflection on a verse from Bhagavad-gita.<p>
+        <p>Chaitanya Charan das is a researcher and author in science and spirituality. Building on his engineering degree from the Government College of Engineering, Pune, India, he has studied extensively the philosophical and sociological ramifications of modern science. He has been an invited speaker at several international conferences on the interface of science and spirituality including those organised by UNESCO.He has written over 200 analytical articles,1000 inspirational meditations on the Bhagavad-gita and fourteen books.He is especially known for his logical and systematic question-answers which are available on <b>www.thespiritualscientist.com</b></p></div>
+        
+        <script type="text/javascript">
+alert(" Hare Krishna");        
+            app.initialize();
+alert("app initialized");
+            
+                $("#prevPosts").hide();
+                
+    			var allItems = null; 
+                init();
+    			$("#prevPosts").on("click",showPrevPosts);
+                $("#aboutAppLauncher").on("click",showAboutApp);
+                
+                if(isInternetConnectionAvailable()){
+                    alert("found reachable");
+                    $.get('http://www.gitadaily.com/feed/', function (data) {
+                        alert("got the feed");
+                        processPostsList(data);
+                        putDataInLocalStorage(data);
+
+                    }); 
+                }else{
+
+                    alert("not reachable");
+                    var data = getDataFromLocalStorage();
+                    if(data){
+                        alert("found in local storage");
+                        processPostsList(data);
+                    }else{
+                        alert("error");
+                    }  
+                }
+
+
+        </script>
+    </body>
+</html>
