@@ -42,7 +42,7 @@
 		</iframe-->
 		<div id="topBar" class="topBar">
 			Gita Daily
-            <img src="css/img/info3.gif" id="aboutAppLauncher" class="infoImg" />
+            <img src="css/img/about.png" id="aboutAppLauncher" class="infoImg" />
 		</div>
 		<div id="homepage" class="middleArea">
 			
@@ -60,9 +60,9 @@
         <p>Chaitanya Charan das is a researcher and author in science and spirituality. Building on his engineering degree from the Government College of Engineering, Pune, India, he has studied extensively the philosophical and sociological ramifications of modern science. He has been an invited speaker at several international conferences on the interface of science and spirituality including those organised by UNESCO.He has written over 200 analytical articles,1000 inspirational meditations on the Bhagavad-gita and fourteen books.He is especially known for his logical and systematic question-answers which are available on <b>www.thespiritualscientist.com</b></p></div>
         
         <script type="text/javascript">
-alert(" Hare Krishna");        
+//alert(" Hare Krishna");        
             app.initialize();
-alert("app initialized");
+//alert("app initialized");
             
                 $("#prevPosts").hide();
                 
@@ -72,9 +72,9 @@ alert("app initialized");
                 $("#aboutAppLauncher").on("click",showAboutApp);
                 
                 if(isInternetConnectionAvailable()){
-                    alert("found reachable");
+  //                  alert("found reachable");
                     $.get('http://www.gitadaily.com/feed/', function (data) {
-                        alert("got the feed");
+                        alert("Hare Krishna");
                         processPostsList(data);
                         putDataInLocalStorage(data);
 

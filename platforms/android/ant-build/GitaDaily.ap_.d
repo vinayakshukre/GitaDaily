@@ -58,8 +58,10 @@ F:\code2\GitaDaily\platforms\android\assets\www\css\images\ui-icons_2e83ff_256x2
 F:\code2\GitaDaily\platforms\android\assets\www\css\images\ui-icons_454545_256x240.png \
 F:\code2\GitaDaily\platforms\android\assets\www\css\images\ui-icons_888888_256x240.png \
 F:\code2\GitaDaily\platforms\android\assets\www\css\images\ui-icons_cd0a0a_256x240.png \
+F:\code2\GitaDaily\platforms\android\assets\www\css\img\about.png \
+F:\code2\GitaDaily\platforms\android\assets\www\css\img\about2.png \
 F:\code2\GitaDaily\platforms\android\assets\www\css\img\bg.jpg \
-F:\code2\GitaDaily\platforms\android\assets\www\css\img\info3.gif \
+F:\code2\GitaDaily\platforms\android\assets\www\css\img\info3_old.gif \
 F:\code2\GitaDaily\platforms\android\assets\www\img\KrishnaArjun3.jpg \
 F:\code2\GitaDaily\platforms\android\assets\www\img\wait2.gif \
 F:\code2\GitaDaily\platforms\android\assets\www\js\index.js \

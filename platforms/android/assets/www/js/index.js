@@ -59,7 +59,9 @@ var showPrevPosts = function(){
         $("#homepage").empty();
         $("#prevPosts").hide();
         var postsList = $("#homepage").append("<ul class=\"postlist\"></ul>");
+        //alert(firstTimeToShowPrevPostList);
         allItems.each(function(index,element){
+            //alert(index + " = index");
             var el = $(this);
             if(firstTimeToShowPrevPostList){
                  postArray.push(el);   
@@ -118,6 +120,7 @@ var removeIFrameIfAny = function(contentStr){
     return replaceUnnecessaryStrings(sXML);
 };
 var displayPost = function(item,firstTime){
+    alert(item);
     $("#prevPosts").show();
     $("#authorDiv").show();
     if(firstTime){
@@ -139,7 +142,17 @@ var displayActualPost = function(item){
     $("a").on("click",disableAllLinks);
 };
 var showFullPost = function(event){
-    var index = event.target.id.substr(3); // Strip off li_
+    var elementId = event.target.id 
+    alert(event.target.id);
+    if(elementId.substr(0,3) != "li_"){  // This condition comes when user taps on span used to show date or category.
+        alert("Tapped on either date or category");
+        var parent = $(event.target).parent(); // Jump to corressponding li.
+        elementId = parent.id;
+        if(elementId.substr(0,3) != "li_")
+            return;
+    }
+    alert(elementId + " after recalculation");
+    var index = elementId.substr(3); // Strip off li_
     displayPost(postArray[index],false);
     
 };
@@ -189,7 +202,7 @@ var init = function(){
         effect: "blind",
         duration: 500
       },
-      width:400,
+      width:'90%',
       height:600,
       buttons: {
                 Close: function() {
@@ -225,6 +238,7 @@ var correctAllImgWidths = function(mydom){
 var replaceUnnecessaryStrings =  function(sXML){
     sXML = sXML.replace("Explanation of article:","");
     sXML = sXML.replace("Listen audio","");
+    sXML = sXML.replace("Podcast:","");
     return sXML;
 };
 
